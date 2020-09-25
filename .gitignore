@@ -36,3 +36,6 @@ Include
 # virtualenv folders #
 ######################
 my_env
+
+#setting file
+local_setting.py
