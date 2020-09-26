@@ -38,4 +38,8 @@ Include
 my_env
 
 #setting file
-local_setting.py
+local_settings.py
+
+static/
+/media
+__pycache__/
