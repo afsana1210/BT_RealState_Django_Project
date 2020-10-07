@@ -3,8 +3,10 @@ from .models import Listing
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 # Create your views here.
 def index(request):
-    listings=Listing.objects.all()
-    paginator=Paginator(listing,3)
+    # listings=Listing.objects.all()
+    # according to date it will show listing.used filter for listing is published or not if nor removed it.only published listing should show .
+    listings=Listing.objects.order_by("-list_date").filter(is_published=True)
+    paginator=Paginator(listings,6)
     page=request.GET.get('page')
     paged_listings=paginator.get_page(page)
     context={
