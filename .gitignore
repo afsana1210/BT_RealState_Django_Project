@@ -40,7 +40,7 @@ my_env
 #setting file
 local_settings.py
 
-/static/
+/static
 /media/
 __pycache__/
 .vscode/
