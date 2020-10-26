@@ -47,12 +47,15 @@ def login(request):
             return redirect('dashboard')
         else:
             messages.error(requestm,'Invalid credentials')
-            request redirect('login')
+            return redirect('login')
     else:
       return render(request,'accounts/login.html')
 
 def logout(request):
-    return redirect('index')
+    if request.method=='POST':
+        auth.logout(request)
+        messages.success(request,'You are now logged out')
+        return redirect('index')
 
 def dashboard(request):
     return render(request,'accounts/dashboard.html')
