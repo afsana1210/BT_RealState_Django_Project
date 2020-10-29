@@ -13,6 +13,7 @@ def register(request):
         password2=request.POST.get('password2')
 
         if password == password2:
+
             if User.objects.filter(username=username).exists():
                 messages.error(request,'that username is taken')
                 return redirect('register')
@@ -22,9 +23,7 @@ def register(request):
                   return redirect('register')
                 else:
                     user=User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name)
-                    # auth.login(request,user)
-                    # messages.success(request,'succesfully logged in')
-                    # return redirect('index')
+
                     user.save()
                     messages.success(request,'you are now register and can log in')
                     return redirect('login')
@@ -36,12 +35,14 @@ def register(request):
 
 def login(request):
     if request.method=='POST':
-        username=request.POST.get('username')
-        password=request.POST.get('password')
-
-        user=auth.authenticate(request,username=username,password=password)
+        print('hello,this is post method')
+        username=request.POST['username']
+        password=request.POST['password']
+        print('auth user')
+        user=auth.authenticate(username=username,password=password)
 
         if user is not None:
+            print('user not none')
             auth.login(request,user)
             messages.success(request,'you are now logged in')
             return redirect('dashboard')
