@@ -19,7 +19,7 @@ def contact(request):
         
         contact.save()
 
-        messages.success(request,'Your request has been submitted,a realtor will get back to you soon ')
+        messages.success(request,'Your request has been submitted,a realtor will get back to you soon')
         return redirect('/listings/'+listing_id)
 
 
